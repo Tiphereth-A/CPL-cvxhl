@@ -1,0 +1,7 @@
+\begin{frame}[fragile]{误差处理 - 实现}
+	\label{basic2d:ssec:eps}
+
+	\verb|double| 具有 15 - 17 位精度 \cite{enwiki:1096894205}, 并且经过多次浮点数运算之后结果存在精度损失, 所以 \verb|EPS| 不应设置得过小
+
+	\includecode[c++]{eps.cpp}
+\end{frame}

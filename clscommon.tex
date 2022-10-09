@@ -1,0 +1,324 @@
+\usetheme[progressbar=frametitle,block=fill]{metropolis}
+\setbeamertemplate{theorems}[numbered]
+\RequirePackage{appendixnumberbeamer}
+
+\RequirePackage{xcolor}
+\RequirePackage{algorithm}
+\RequirePackage{algpseudocode}
+\RequirePackage{amsfonts}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsthm}
+\RequirePackage{bm}
+\RequirePackage{bigdelim}
+\RequirePackage{bigstrut}
+\RequirePackage{bookmark}
+\RequirePackage{booktabs}
+\RequirePackage[scale=2]{ccicons}
+\RequirePackage{cprotect}
+\RequirePackage[UTF8]{ctex}
+\RequirePackage{etoolbox}
+\RequirePackage{extpfeil}
+\RequirePackage{fancyhdr}
+\RequirePackage{hyperref}
+\RequirePackage{ifthen}
+\RequirePackage{subcaption}
+\RequirePackage{tabularx}
+\RequirePackage{tikz}
+\RequirePackage{url}
+\RequirePackage{xspace}
+\RequirePackage{longtable}
+\RequirePackage{mathtools}
+\RequirePackage{multirow}
+\RequirePackage{multicol}
+\RequirePackage{geometry}
+\RequirePackage{xfp}
+
+\RequirePackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\usetikzlibrary{calc}
+\usetikzlibrary{math}
+\usetikzlibrary{intersections}
+
+
+% Font setting
+\RequirePackage{eulervm}
+\RequirePackage{fontspec}
+\setsansfont{Fira Sans}
+\setmonofont{Fira Code}[Contextuals=Alternate]
+
+
+% Image
+\newcommand{\includeimage}[3][scale=1]{
+	\begin{figure}
+		\centering
+		\includegraphics[#1]{image/#2}
+		\caption{#3}
+		\label{fig:#2}
+	\end{figure}
+}
+
+\newcommand{\includetikzimage}[2]{
+	\begin{figure}
+		\centering
+		\input{image/#1}
+		\caption{#2}
+		\label{fig:#1}
+	\end{figure}
+}
+
+
+% Code style
+\RequirePackage{listings}
+\RequirePackage{lstfiracode}
+\lstdefinestyle{common}{
+	style=FiraCodeStyle,
+	belowcaptionskip=1\baselineskip,
+	breaklines=true,
+	xleftmargin=\parindent,
+	showstringspaces=true,
+	numbers=left,
+	numberstyle=\ttfamily\small,
+	basicstyle=\ttfamily,
+	stepnumber=1,
+	frame=single
+}
+
+\lstdefinestyle{code}{
+	style=common,
+	keywordstyle=\bfseries\color{green!40!black},
+	commentstyle=\itshape\color{red!80!black},
+	identifierstyle=\color{blue},
+	stringstyle=\color{purple!40!black}
+}
+
+\lstdefinestyle{c++}{
+	style=code,
+	language=C++
+}
+
+\lstdefinestyle{c}{
+	style=code,
+	language=C
+}
+
+\lstdefinestyle{py}{
+	style=code,
+	language=Python
+}
+
+\lstdefinestyle{java}{
+	style=code,
+	language=Java
+}
+
+\newcommand{\includecode}[2][c++]{
+	\vspace{0.3cm}
+	\lstset{style=#1}
+	\lstinputlisting[label={code:#2}]{code/#2}
+	\vspace{0.3cm}
+}
+
+\lstdefinestyle{pascal}{
+	style=code,
+	language=Pascal
+}
+
+
+% Bib
+\newcommand{\listofbib}[1][references]{
+	\nocite{*}
+	\bibliographystyle{plain}
+	\bibliography{bib/#1}
+}
+
+
+% Throrem
+\renewcommand\qedsymbol{$\blacksquare$}
+
+
+% User defined math command
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\nequiv}{~{\equiv}\llap{/\,}~}
+\newcommand{\subjectto}{~s.t.~}
+
+
+% Others
+\newcommand{\forcenewline}{\leavevmode\newline}
+\newcommand{\questions}{
+	\begin{frame}[standout]
+		Questions?
+	\end{frame}
+}
+
+
+% [verbose]{xl}{yl}{r}{x}{y}{\theta}
+\newcommand{\drawcard}[7][normal]{
+	\def\vxl{#2}
+	\def\vyl{#3}
+	\def\vr{#4}
+	\def\vx{#5}
+	\def\vy{#6}
+	\def\vdeg{#7/pi*180}
+	\def\vcd{cos(#7)}
+	\def\vsd{sin(#7)}
+
+
+	\def\vxcx{\vx}
+	\def\vycx{\vy}
+	\coordinate (cx) at (\vxcx,\vycx);
+
+
+	\def\vxcaa{\fpeval{(\vxl/2-\vr)*\vcd-(\vyl/2-\vr)*\vsd+\vx+\vr}}
+	\def\vycaa{\fpeval{(\vxl/2-\vr)*\vsd+(\vyl/2-\vr)*\vcd+\vy}}
+	\coordinate (c00) at (\vxcaa,\vycaa);
+
+	\def\vxcba{\fpeval{-(\vxl/2-\vr)*\vcd-(\vyl/2-\vr)*\vsd+\vx}}
+	\def\vycba{\fpeval{-(\vxl/2-\vr)*\vsd+(\vyl/2-\vr)*\vcd+\vy+\vr}}
+	\coordinate (c10) at (\vxcba,\vycba);
+
+	\def\vxcca{\fpeval{-(\vxl/2-\vr)*\vcd+(\vyl/2-\vr)*\vsd+\vx-\vr}}
+	\def\vycca{\fpeval{-(\vxl/2-\vr)*\vsd-(\vyl/2-\vr)*\vcd+\vy}}
+	\coordinate (c20) at (\vxcca,\vycca);
+
+	\def\vxcda{\fpeval{(\vxl/2-\vr)*\vcd+(\vyl/2-\vr)*\vsd+\vx}}
+	\def\vycda{\fpeval{(\vxl/2-\vr)*\vsd-(\vyl/2-\vr)*\vcd+\vy-\vr}}
+	\coordinate (c30) at (\vxcda,\vycda);
+
+
+	\def\vxca{\fpeval{(\vxl/2-\vr)*\vcd-(\vyl/2-\vr)*\vsd+\vx}}
+	\def\vyca{\fpeval{(\vxl/2-\vr)*\vsd+(\vyl/2-\vr)*\vcd+\vy}}
+	\coordinate (c0) at (\vxca,\vyca);
+
+	\def\vxc1{\fpeval{-(\vxl/2-\vr)*\vcd-(\vyl/2-\vr)*\vsd+\vx}}
+	\def\vyc1{\fpeval{-(\vxl/2-\vr)*\vsd+(\vyl/2-\vr)*\vcd+\vy}}
+	\coordinate (c1) at (\vxc1,\vyc1);
+
+	\def\vxcc{\fpeval{-(\vxl/2-\vr)*\vcd+(\vyl/2-\vr)*\vsd+\vx}}
+	\def\vycc{\fpeval{-(\vxl/2-\vr)*\vsd-(\vyl/2-\vr)*\vcd+\vy}}
+	\coordinate (c2) at (\vxcc,\vycc);
+
+	\def\vxcd{\fpeval{(\vxl/2-\vr)*\vcd+(\vyl/2-\vr)*\vsd+\vx}}
+	\def\vycd{\fpeval{(\vxl/2-\vr)*\vsd-(\vyl/2-\vr)*\vcd+\vy}}
+	\coordinate (c3) at (\vxcd,\vycd);
+
+
+	\def\vxcab{\fpeval{(\vxl/2-\vr)*\vcd-(\vyl/2-\vr)*\vsd+\vx}}
+	\def\vycab{\fpeval{(\vxl/2-\vr)*\vsd+(\vyl/2-\vr)*\vcd+\vy+\vr}}
+	\coordinate (c01) at (\vxcab,\vycab);
+
+	\def\vxcbb{\fpeval{-(\vxl/2-\vr)*\vcd-(\vyl/2-\vr)*\vsd+\vx-\vr}}
+	\def\vycbb{\fpeval{-(\vxl/2-\vr)*\vsd+(\vyl/2-\vr)*\vcd+\vy}}
+	\coordinate (c11) at (\vxcbb,\vycbb);
+
+	\def\vxccb{\fpeval{-(\vxl/2-\vr)*\vcd+(\vyl/2-\vr)*\vsd+\vx}}
+	\def\vyccb{\fpeval{-(\vxl/2-\vr)*\vsd-(\vyl/2-\vr)*\vcd+\vy-\vr}}
+	\coordinate (c21) at (\vxccb,\vyccb);
+
+	\def\vxcdb{\fpeval{(\vxl/2-\vr)*\vcd+(\vyl/2-\vr)*\vsd+\vx+\vr}}
+	\def\vycdb{\fpeval{(\vxl/2-\vr)*\vsd-(\vyl/2-\vr)*\vcd+\vy}}
+	\coordinate (c31) at (\vxcdb,\vycdb);
+
+
+	\def\vxraa{\fpeval{(\vxl/2)*\vcd-(\vyl/2-\vr)*\vsd+\vx}}
+	\def\vyraa{\fpeval{(\vxl/2)*\vsd+(\vyl/2-\vr)*\vcd+\vy}}
+	\coordinate (r00) at (\vxraa,\vyraa);
+
+	\def\vxrba{\fpeval{-(\vxl/2-\vr)*\vcd-(\vyl/2)*\vsd+\vx}}
+	\def\vyrba{\fpeval{-(\vxl/2-\vr)*\vsd+(\vyl/2)*\vcd+\vy}}
+	\coordinate (r10) at (\vxrba,\vyrba);
+
+	\def\vxrca{\fpeval{-(\vxl/2)*\vcd+(\vyl/2-\vr)*\vsd+\vx}}
+	\def\vyrca{\fpeval{-(\vxl/2)*\vsd-(\vyl/2-\vr)*\vcd+\vy}}
+	\coordinate (r20) at (\vxrca,\vyrca);
+
+	\def\vxrda{\fpeval{(\vxl/2-\vr)*\vcd+(\vyl/2)*\vsd+\vx}}
+	\def\vyrda{\fpeval{(\vxl/2-\vr)*\vsd-(\vyl/2)*\vcd+\vy}}
+	\coordinate (r30) at (\vxrda,\vyrda);
+
+
+	\def\vxra{\fpeval{(\vxl/2)*\vcd-(\vyl/2)*\vsd+\vx}}
+	\def\vyra{\fpeval{(\vxl/2)*\vsd+(\vyl/2)*\vcd+\vy}}
+	\coordinate (r0) at (\vxra,\vyra);
+
+	\def\vxr1{\fpeval{-(\vxl/2)*\vcd-(\vyl/2)*\vsd+\vx}}
+	\def\vyr1{\fpeval{-(\vxl/2)*\vsd+(\vyl/2)*\vcd+\vy}}
+	\coordinate (r1) at (\vxr1,\vyr1);
+
+	\def\vxrc{\fpeval{-(\vxl/2)*\vcd+(\vyl/2)*\vsd+\vx}}
+	\def\vyrc{\fpeval{-(\vxl/2)*\vsd-(\vyl/2)*\vcd+\vy}}
+	\coordinate (r2) at (\vxrc,\vyrc);
+
+	\def\vxrd{\fpeval{(\vxl/2)*\vcd+(\vyl/2)*\vsd+\vx}}
+	\def\vyrd{\fpeval{(\vxl/2)*\vsd-(\vyl/2)*\vcd+\vy}}
+	\coordinate (r3) at (\vxrd,\vyrd);
+
+
+	\def\vxrab{\fpeval{(\vxl/2-\vr)*\vcd-(\vyl/2)*\vsd+\vx}}
+	\def\vyrab{\fpeval{(\vxl/2-\vr)*\vsd+(\vyl/2)*\vcd+\vy}}
+	\coordinate (r01) at (\vxrab,\vyrab);
+
+	\def\vxrbb{\fpeval{-(\vxl/2)*\vcd-(\vyl/2-\vr)*\vsd+\vx}}
+	\def\vyrbb{\fpeval{-(\vxl/2)*\vsd+(\vyl/2-\vr)*\vcd+\vy}}
+	\coordinate (r11) at (\vxrbb,\vyrbb);
+
+	\def\vxrcb{\fpeval{-(\vxl/2-\vr)*\vcd+(\vyl/2)*\vsd+\vx}}
+	\def\vyrcb{\fpeval{-(\vxl/2-\vr)*\vsd-(\vyl/2)*\vcd+\vy}}
+	\coordinate (r21) at (\vxrcb,\vyrcb);
+
+	\def\vxrdb{\fpeval{(\vxl/2)*\vcd+(\vyl/2-\vr)*\vsd+\vx}}
+	\def\vyrdb{\fpeval{(\vxl/2)*\vsd-(\vyl/2-\vr)*\vcd+\vy}}
+	\coordinate (r31) at (\vxrdb,\vyrdb);
+
+
+	\ifstrequal{#1}{verbose}{%
+		\draw[very thin,dashed] (c0) circle[radius=\vr];
+		\draw[very thin,dashed] (c1) circle[radius=\vr];
+		\draw[very thin,dashed] (c2) circle[radius=\vr];
+		\draw[very thin,dashed] (c3) circle[radius=\vr];
+
+		% \draw[very thin,dashed, draw=yellow!50!black] (c0) -- (c00);
+		% \draw[very thin,dashed, draw=yellow!50!black] (c0) -- (c01);
+		% \draw[very thin,dashed, draw=yellow!50!black] (c1) -- (c10);
+		% \draw[very thin,dashed, draw=yellow!50!black] (c1) -- (c11);
+		% \draw[very thin,dashed, draw=yellow!50!black] (c2) -- (c20);
+		% \draw[very thin,dashed, draw=yellow!50!black] (c2) -- (c21);
+		% \draw[very thin,dashed, draw=yellow!50!black] (c3) -- (c30);
+		% \draw[very thin,dashed, draw=yellow!50!black] (c3) -- (c31);
+
+		\draw[very thin,dashed] (c0) -- (r00);
+		\draw[very thin,dashed] (c0) -- (r01);
+		\draw[very thin,dashed] (c1) -- (r10);
+		\draw[very thin,dashed] (c1) -- (r11);
+		\draw[very thin,dashed] (c2) -- (r20);
+		\draw[very thin,dashed] (c2) -- (r21);
+		\draw[very thin,dashed] (c3) -- (r30);
+		\draw[very thin,dashed] (c3) -- (r31);
+
+		\filldraw[fill=black] (cx) circle[radius=.05];
+		\filldraw[very thin,draw=red!30!black,fill=red!50!white] (c0) circle[radius=.05];
+		\filldraw[very thin,draw=green!30!black,fill=green!50!white] (c1) circle[radius=.05];
+		\filldraw[very thin,draw=blue!30!black,fill=blue!50!white] (c2) circle[radius=.05];
+		\filldraw[very thin,draw=yellow!30!black,fill=yellow!50!white] (c3) circle[radius=.05];
+	}{%
+	}
+
+
+	\draw[very thick,draw=blue] (r00) arc[start angle=\fpeval{\vdeg},end angle=\fpeval{90+\vdeg},radius=\vr] (r01) -- (r10) arc[start angle=\fpeval{90+\vdeg},end angle=\fpeval{180+\vdeg},radius=\vr] (r11) -- (r20) arc[start angle=\fpeval{180+\vdeg},end angle=\fpeval{270+\vdeg},radius=\vr] (r21) -- (r30) arc[start angle=\fpeval{270+\vdeg},end angle=\fpeval{360+\vdeg},radius=\vr] (r31) -- (r00);
+}
+
+% [step]{xmin}{xmax}{ymin}{ymax}
+\newcommand{\drawcsys}[5][0]{
+	\def\vstep{#1}
+	\def\vxmin{#2}
+	\def\vxmax{#3}
+	\def\vymin{#4}
+	\def\vymax{#5}
+
+	\ifstrequal{#1}{0}{}{%
+		\draw[help lines,step=\vstep] (\vxmin,\vymin) grid (\vxmax,\vymax);
+	}
+	\draw[->,thick] (\vxmin,0) -- (\vxmax,0) node[anchor=north] {$x$};
+	\draw[->,thick] (0,\vymin) -- (0,\vymax) node[anchor=east]  {$y$};
+}

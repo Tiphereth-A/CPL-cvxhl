@@ -1,0 +1,41 @@
+\begin{frame}[fragile]{线段, 直线之间的交点}
+	\label{basic2d:ssec:issl}
+
+	\only<1-2>{直线的情况比较显然, 若其不平行, 则有一个交点, 交点的求法参照正弦定理等}
+
+	\only<2>{直线和线段的情况也很显然, 只需看线段端点是否在直线的异侧即可, 称其为 \textbf{跨立实验}}
+
+	\only<3-6>{下面讨论两线段的情况}
+	\only<4>{, 先讨论一些特例
+
+		\begin{itemize}
+			\item 若两线段平行, 则显然不相交
+			\item 若两线段的交点为其中一条线段的端点, 则只需判断点是否在线段上即可
+		\end{itemize}}
+\end{frame}
+
+
+\begin{frame}[fragile]{线段, 直线之间的交点}
+	接下来我们考虑这样的情况:
+
+	\includetikzimage{intersection1.tex}{两条线段}
+\end{frame}
+
+
+\begin{frame}[fragile]{线段, 直线之间的交点}
+	我们考虑以其为对角线且各边均与坐标轴平行的矩形, 如下:
+
+	\includetikzimage{intersection2.tex}{画出矩形}
+\end{frame}
+
+
+\begin{frame}[fragile]{线段, 直线之间的交点}
+	\only<1->{不难发现若这两个矩形不交, 则两条线段就不可能有交点, 我们称其为 \textbf{快速排斥实验}}
+
+	\only<2->{不难证明: 只有同时通过快速排斥实验和跨立实验的两条线段才会有交点}
+\end{frame}
+
+
+\begin{frame}[fragile,allowframebreaks]{线段, 直线之间的交点 - 实现}
+	\includecode[c++]{issl.cpp}
+\end{frame}
