@@ -1,0 +1,26 @@
+\begin{tikzpicture}[scale=.3, every node/.style={scale=.3}]
+	\drawcsys[1]{-3.1}{7.6}{-3.1}{11.6}
+
+	\drawcard{6}{6}{1}{0}{8}{0}
+
+	\coordinate (cv00) at (\fpeval{\vxca+sqrt(.5)},\fpeval{\vyca+sqrt(.5)});
+	\coordinate (cv01) at (r01);
+	\coordinate (cv10) at (r10);
+	\coordinate (cv11) at (r11);
+
+	\drawcard{6}{6}{1}{0}{0}{0}
+
+	\coordinate (cv20) at (r20);
+	\coordinate (cv21) at (r21);
+	\coordinate (cv30) at (r30);
+	\coordinate (cv31) at (\fpeval{\vxcd+sqrt(.5)},\fpeval{\vycd-sqrt(.5)});
+
+	\drawcard{6}{6}{1}{4}{4}{0}
+
+	\coordinate (cv40) at (\fpeval{\vxcd+sqrt(.5)},\fpeval{\vycd-sqrt(.5)});
+	\coordinate (cv41) at (r31);
+	\coordinate (cv50) at (r00);
+	\coordinate (cv51) at (\fpeval{\vxca+sqrt(.5)},\fpeval{\vyca+sqrt(.5)});
+
+	\draw[thick,draw=green!40!black,dashed] (cv00) arc[start angle=45,end angle=90,radius=1] (cv01) -- (cv10) arc[start angle=90,end angle=180,radius=1] (cv11) -- (cv20) arc[start angle=180,end angle=270,radius=1] (cv21) -- (cv30) arc[start angle=270,end angle=315,radius=1] (cv31) -- (cv40) arc[start angle=315,end angle=360,radius=1] (cv41) -- (cv50) arc[start angle=0,end angle=45,radius=1] (cv51) -- (cv00);
+\end{tikzpicture}

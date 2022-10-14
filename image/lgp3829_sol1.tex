@@ -1,0 +1,71 @@
+\begin{tikzpicture}[scale=.4, every node/.style={scale=.4}]
+	\drawcsys{-4.1}{7.6}{-4.1}{12.1}
+
+	\drawcard[verbose]{6}{6}{1}{0}{8}{.3490658504}
+
+	\coordinate (cvh01) at (r01);
+	\coordinate (cvh10) at (r10);
+
+	\coordinate (cvho0) at (c0); % (1.195344954918, 10.563425528225)
+	\coordinate (cvho1) at (c1); % (-2.563425528225, 9.195344954918)
+
+
+	\drawcard[verbose]{6}{6}{1}{0}{0}{.5235987756}
+
+	\coordinate (cvh21) at (r11);
+	\coordinate (cvh30) at (r20);
+	\coordinate (cvh31) at (r21);
+	\coordinate (cvh40) at (r30);
+
+	\coordinate (cvho2) at (c1); % (-2.732050807570, 0.732050807564)
+	\coordinate (cvho3) at (c2); % (-0.732050807564, -2.732050807570)
+	\coordinate (cvho4) at (c3); % (2.732050807570, -0.732050807564)
+
+
+	\drawcard[verbose]{6}{6}{1}{4}{4}{.1745329252}
+
+	\coordinate (cvh51) at (r31);
+	\coordinate (cvh60) at (r00);
+
+	\coordinate (cvho5) at (c3); % (6.316911861359, 2.377680849311)
+	\coordinate (cvho6) at (c0); % (5.622319150689, 6.316911861359)
+
+
+	\coordinate (cvh61) at ($(cvho6)!1/6.134409!270:(cvho0)$);
+	\coordinate (cvh00) at ($(cvho0)!1/6.134409!90:(cvho6)$);
+
+	\coordinate (cvh11) at ($(cvho1)!1/8.464973!270:(cvho2)$);
+	\coordinate (cvh20) at ($(cvho2)!1/8.464973!90:(cvho1)$);
+
+	\coordinate (cvh41) at ($(cvho4)!1/4.745699!270:(cvho5)$);
+	\coordinate (cvh50) at ($(cvho5)!1/4.745699!90:(cvho4)$);
+
+
+	\def\vdegscva{46.19192}
+	\def\vdegecva{110}
+	\def\vdegscvb{110}
+	\def\vdegecvb{178.85857}
+	\def\vdegscvc{178.85857}
+	\def\vdegecvc{210}
+	\def\vdegscvd{210}
+	\def\vdegecvd{300}
+	\def\vdegscve{300}
+	\def\vdegecve{310.9404}
+	\def\vdegscvf{310.9404}
+	\def\vdegecvf{370}
+	\def\vdegscvg{10}
+	\def\vdegecvg{46.19192}
+
+
+	\filldraw[very thin, draw=yellow!50!black, fill=yellow!40!white] (cvho0) -- (cvh00) arc[start angle=\vdegscva,end angle=\vdegecva,radius=1] (cvh01) -- (cvho0);
+	\filldraw[very thin, draw=yellow!50!black, fill=yellow!40!white] (cvho1) -- (cvh10) arc[start angle=\vdegscvb,end angle=\vdegecvb,radius=1] (cvh11) -- (cvho1);
+	\filldraw[very thin, draw=yellow!50!black, fill=yellow!40!white] (cvho2) -- (cvh20) arc[start angle=\vdegscvc,end angle=\vdegecvc,radius=1] (cvh21) -- (cvho2);
+	\filldraw[very thin, draw=yellow!50!black, fill=yellow!40!white] (cvho3) -- (cvh30) arc[start angle=\vdegscvd,end angle=\vdegecvd,radius=1] (cvh31) -- (cvho3);
+	\filldraw[very thin, draw=yellow!50!black, fill=yellow!40!white] (cvho4) -- (cvh40) arc[start angle=\vdegscve,end angle=\vdegecve,radius=1] (cvh41) -- (cvho4);
+	\filldraw[very thin, draw=yellow!50!black, fill=yellow!40!white] (cvho5) -- (cvh50) arc[start angle=\vdegscvf,end angle=\vdegecvf,radius=1] (cvh51) -- (cvho5);
+	\filldraw[very thin, draw=yellow!50!black, fill=yellow!40!white] (cvho6) -- (cvh60) arc[start angle=\vdegscvg,end angle=\vdegecvg,radius=1] (cvh61) -- (cvho6);
+
+	\draw[very thick,draw=green!40!black] (cvh00) arc[start angle=\vdegscva,end angle=\vdegecva,radius=1] (cvh01) -- (cvh10) arc[start angle=\vdegscvb,end angle=\vdegecvb,radius=1] (cvh11) -- (cvh20) arc[start angle=\vdegscvc,end angle=\vdegecvc,radius=1] (cvh21) -- (cvh30) arc[start angle=\vdegscvd,end angle=\vdegecvd,radius=1] (cvh31) -- (cvh40) arc[start angle=\vdegscve,end angle=\vdegecve,radius=1] (cvh41) -- (cvh50) arc[start angle=\vdegscvf,end angle=\vdegecvf,radius=1] (cvh51) -- (cvh60) arc[start angle=\vdegscvg,end angle=\vdegecvg,radius=1] (cvh61) -- (cvh00);
+
+	\draw[very thick,draw=red!40!black] (cvho0) -- (cvho1) -- (cvho2) -- (cvho3) -- (cvho4) -- (cvho5) -- (cvho6) -- (cvho0);
+\end{tikzpicture}

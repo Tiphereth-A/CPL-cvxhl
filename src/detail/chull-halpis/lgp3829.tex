@@ -1,0 +1,116 @@
+\begin{frame}[fragile,allowframebreaks]{洛谷 P3829 信用卡凸包}
+	\label{cvh:example:lgp3829}
+
+	\textbf{题目描述}
+
+	信用卡是一个矩形, 唯四个角作了圆滑处理, 使它们都是与矩形的两边相切的 1/4 圆, 如图 (\ref{fig:lgp3829_1.tex}) 所示. 现在平面上有一些规格相同的信用卡, 试求其凸包的周长. 注意凸包未必是多边形, 因为它可能包含若干段圆弧
+
+	\includetikzimage{lgp3829_1.tex}{信用卡凸包}
+
+	\textbf{输入格式}
+
+	输入的第一行是一个正整数 n, 表示信用卡的张数. 第二行包含三个实数 a, b, r, 分别表示信用卡 (圆滑处理前) 竖直方向的长度、水平方向的长度, 以及 1/4 圆的半径
+
+	之后 n 行, 每行包含三个实数 x, y, θ, 分别表示一张信用卡中心 (即对角线交点) 的横、纵坐标, 以及绕中心 逆时针旋转的 弧度
+
+	\textbf{输出格式}
+
+	输出只有一行, 包含一个实数, 表示凸包的周长, 四舍五入精确到小数点后2 位
+
+	\textbf{样例输入1}
+
+	\includecode[common]{lgp3829-1.in}
+
+	\textbf{样例输出1}
+
+	\includecode[common]{lgp3829-1.ans}
+
+	\textbf{样例输入2}
+
+	\includecode[common]{lgp3829-2.in}
+
+	\textbf{样例输出2}
+
+	\includecode[common]{lgp3829-2.ans}
+
+	\textbf{样例输入3}
+
+	\includecode[common]{lgp3829-3.in}
+
+	\textbf{样例输出3}
+
+	\includecode[common]{lgp3829-3.ans}
+
+	\newpage
+
+	\textbf{提示}
+
+	\textbf{样例1说明} (图 (\ref{fig:lgp3829_sample1.tex}))
+
+	\includetikzimage{lgp3829_sample1.tex}{样例1}
+
+	本样例中的 2 张信用卡的轮廓在上图中用实线标出, 如果视 1.5707963268为pi/2, 那么凸包的周长为16+4sqrt(2)
+
+	\newpage
+
+	\textbf{样例2说明} (图 (\ref{fig:lgp3829_sample2.tex}))
+
+	\includetikzimage{lgp3829_sample2.tex}{样例2}
+
+	\newpage
+
+	\textbf{样例3说明} (图 (\ref{fig:lgp3829_sample3.tex}))
+
+	\includetikzimage{lgp3829_sample3.tex}{样例3}
+
+	其凸包的周长约为41.628267652
+
+	\newpage
+
+	本题可能需要使用数学库中的三角函数. 不熟悉使用方法的选手, 可以参考下面的程序及其输出结果:
+
+	\textbf{Pascal}:
+
+	\includecode[pascal]{tri.pas}
+
+	\textbf{C++}:
+
+	\includecode[c++]{tri.cpp}
+
+	\textbf{输出结果}:
+
+	\includecode[common]{tri.ans}
+
+	\textbf{数据范围}
+
+	\begin{tabular}{cccc}
+		\hline
+		测试数据编号 & \(n\)                  & \(r\)     & \(\theta\)                     \\
+		\hline
+		1            & \(n=1\)                & -         & -                              \\
+		2            & \(n=2\)                & \(r=0.0\) & 所有的 \(\theta\) 均为 \(0.0\) \\
+		3            & \(n=2\)                & -         & 所有的 \(\theta\) 均为 \(0.0\) \\
+		4            & \(n=2\)                & \(r=0.0\) & -                              \\
+		5            & \(n=2\)                & -         & -                              \\
+		6            & \(1\leq n\leq 100\)    & -         & 所有的 \(\theta\) 均为 \(0.0\) \\
+		7            & \(1\leq n\leq 100\)    & -         & -                              \\
+		8            & \(1\leq n\leq 10,000\) & -         & 所有的 \(\theta\) 均为 \(0.0\) \\
+		9            & \(1\leq n\leq 10,000\) & \(r=0.0\) & -                              \\
+		10           & \(1\leq n\leq 10,000\) & -         & -                              \\
+		\hline
+	\end{tabular}
+
+	对于 \(100\%\) 的数据, 有 \(0.1\leq a,b\leq 1000000.0\), 以及 \(0.0\leq r\leq \min\left\{\frac{a}{4},\frac{b}{4}\right\}\), 对所有的信用卡, 有 \(|x|,|y|\leq 1000000.0\), 以及 \(0\leq \theta < 2\pi\).
+\end{frame}
+
+
+\begin{frame}{题解}
+	\includetikzimage{lgp3829_sol1.tex}{图解}
+\end{frame}
+
+
+\begin{frame}{题解}
+	\only<1->{不难发现信用卡凸包中所有的圆弧恰能拼成一个圆, 所以答案即为凸包周长 + 圆的周长}
+
+	\only<2->{\textbf{时间复杂度} \(O(n\log n)\)}
+\end{frame}

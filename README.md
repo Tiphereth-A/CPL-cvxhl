@@ -1,8 +1,8 @@
-# LectureTemplate
+# CPL-cvxhl
 
-![GitHub](https://img.shields.io/github/license/Tiphereth-A/LectureTemplate)
+![GitHub](https://img.shields.io/github/license/Tiphereth-A/CPL-cvxhl)
 
-My template of LaTeX lecture & slice, powered by [metropolis](https://github.com/matze/mtheme)
+My LaTeX lecture & slice about 2D convex hull & half plane intersection, powered by [metropolis](https://github.com/matze/mtheme)
 
 ## Usage
 
